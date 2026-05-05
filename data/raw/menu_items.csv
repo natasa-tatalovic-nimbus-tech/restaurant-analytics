@@ -1,0 +1,19 @@
+id,restaurant_id,name,description,price
+1,1,Margherita,Klasična pizza sa mocarelom,850.00
+2,1,Četiri sira,Pizza sa četiri vrste sira,950.00
+3,1,Kaprićoza,Pizza sa šunkom i pečurkama,900.00
+4,1,Tiramisu,Italijanski dezert,450.00
+5,2,Pasulj,Domaći pasulj sa suvim mesom,650.00
+6,2,Sarma,Sarma od kiselog kupusa,750.00
+7,2,Roštilj mešano,Mešano meso sa roštilja,1200.00
+8,2,Domaća pita,Pita sa sirom,400.00
+9,3,Losos nigiri,Dva komada nigiri sa lososom,600.00
+10,3,Tuna maki,8 komada maki rolne sa tunom,750.00
+11,3,Vegetarian roll,8 komada sa povrćem,650.00
+12,4,Classic Burger,Goveđi burger sa sirom,850.00
+13,4,BBQ Burger,Burger sa BBQ sosom,950.00
+14,4,Pommes,Prženi krompirići,350.00
+15,5,Šopska salata,Salata sa belim sirom,450.00
+16,5,Teleća čorba,Domaća teleća čorba,550.00
+17,5,Pljeskavica,Domaća pljeskavica,800.00
+18,5,Palačinke,Palačinke sa džemom,350.00

@@ -1,0 +1,2 @@
+CREATE SCHEMA IF NOT EXISTS restaurant; 
+CREATE SCHEMA IF NOT EXISTS analytics;  

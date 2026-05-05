@@ -1,0 +1,120 @@
+{"timestamp":"2026-05-05T12:46:08.439115Z","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager","filename":"manager.py","lineno":209}
+{"timestamp":"2026-05-05T12:46:08.440928Z","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py","logger":"airflow.dag_processing.dagbag.BundleDagBag","filename":"dagbag.py","lineno":469}
+{"timestamp":"2026-05-05T12:46:09.033817Z","level":"info","event":"/opt/airflow","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.034527Z","level":"info","event":"/opt/airflow/sql/create","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.098041Z","level":"info","event":"['09_create_dim_restaurants_table.sql', '11_create_dim_time_table.sql', '02_create_schema.sql', '14_create_user_order_summary_table.sql', '13_create_popular_menu_items.sql', '03_create_users_table.sql', '04_create_restaurants_table.sql', '06_create_orders_table.sql', '07_create_order_items_table.sql', '05_create_menu_items_table.sql', '10_create_dim_menu_items_table.sql', '12_create_fact_orders_table.sql', '08_create_dim_users_table.sql', '01_drop_old_schema.sql']","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.098648Z","level":"info","event":"['01_drop_old_schema.sql', '02_create_schema.sql', '03_create_users_table.sql', '04_create_restaurants_table.sql', '05_create_menu_items_table.sql', '06_create_orders_table.sql', '07_create_order_items_table.sql', '08_create_dim_users_table.sql', '09_create_dim_restaurants_table.sql', '10_create_dim_menu_items_table.sql', '11_create_dim_time_table.sql', '12_create_fact_orders_table.sql', '13_create_popular_menu_items.sql', '14_create_user_order_summary_table.sql']","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.174299Z","level":"info","event":"dict_items([('users', '/opt/airflow/data/raw/users.csv'), ('restaurants', '/opt/airflow/data/raw/restaurants.csv'), ('menu_items', '/opt/airflow/data/raw/menu_items.csv'), ('orders', '/opt/airflow/data/raw/orders.csv'), ('order_items', '/opt/airflow/data/raw/order_items.csv')])","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.174867Z","level":"info","event":"users /opt/airflow/data/raw/users.csv","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.195419Z","level":"info","event":"   id              name                        email","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.196045Z","level":"info","event":"0   1     Ana Jovanović      ana.jovanovic@gmail.com","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.196640Z","level":"info","event":"1   2    Marko Petrović     marko.petrovic@gmail.com","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.197617Z","level":"info","event":"2   3    Jelena Nikolić     jelena.nikolic@gmail.com","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.198143Z","level":"info","event":"3   4   Stefan Đorđević  stefan.djordjevic@gmail.com","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.198870Z","level":"info","event":"4   5      Milica Savić       milica.savic@gmail.com","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.199455Z","level":"info","event":"5   6      Nikola Tomić       nikola.tomic@gmail.com","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.199928Z","level":"info","event":"6   7     Ivana Popović      ivana.popovic@gmail.com","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.201145Z","level":"info","event":"7   8  Aleksandar Milić         alex.milic@gmail.com","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.201662Z","level":"info","event":"8   9    Maja Stanković     maja.stankovic@gmail.com","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.202081Z","level":"info","event":"9  10     Petar Vuković      petar.vukovic@gmail.com","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.203040Z","level":"info","event":"---","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.221494Z","level":"info","event":"dict_items([('users', '/opt/airflow/data/raw/users.csv'), ('restaurants', '/opt/airflow/data/raw/restaurants.csv'), ('menu_items', '/opt/airflow/data/raw/menu_items.csv'), ('orders', '/opt/airflow/data/raw/orders.csv'), ('order_items', '/opt/airflow/data/raw/order_items.csv')])","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.222505Z","level":"info","event":"restaurants /opt/airflow/data/raw/restaurants.csv","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.230718Z","level":"info","event":"   id                 name                       address      phone","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.231528Z","level":"info","event":"0   1           Pizza Roma     Knez Mihailova 12 Beograd  112345678","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.231920Z","level":"info","event":"1   2             Kod Bake            Terazije 5 Beograd  119876543","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.234243Z","level":"info","event":"2   3     Sushi Bar Sakura         Makedonska 22 Beograd  113456789","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.234862Z","level":"info","event":"3   4         Burger House           Nemanjina 8 Beograd  114567890","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.236023Z","level":"info","event":"4   5  Kafana Znak Pitanja  Gospodar Jevremova 1 Beograd  115678901","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.236680Z","level":"info","event":"---","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.237812Z","level":"info","event":"dict_items([('users', '/opt/airflow/data/raw/users.csv'), ('restaurants', '/opt/airflow/data/raw/restaurants.csv'), ('menu_items', '/opt/airflow/data/raw/menu_items.csv'), ('orders', '/opt/airflow/data/raw/orders.csv'), ('order_items', '/opt/airflow/data/raw/order_items.csv')])","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.238766Z","level":"info","event":"menu_items /opt/airflow/data/raw/menu_items.csv","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.247751Z","level":"info","event":"    id  restaurant_id             name                   description   price","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.248178Z","level":"info","event":"0    1              1       Margherita   Klasična pizza sa mocarelom   850.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.248547Z","level":"info","event":"1    2              1      Četiri sira    Pizza sa četiri vrste sira   950.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.249018Z","level":"info","event":"2    3              1        Kaprićoza   Pizza sa šunkom i pečurkama   900.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.249584Z","level":"info","event":"3    4              1         Tiramisu            Italijanski dezert   450.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.250563Z","level":"info","event":"4    5              2           Pasulj  Domaći pasulj sa suvim mesom   650.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.251034Z","level":"info","event":"5    6              2            Sarma       Sarma od kiselog kupusa   750.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.251845Z","level":"info","event":"6    7              2   Roštilj mešano       Mešano meso sa roštilja  1200.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.253233Z","level":"info","event":"7    8              2      Domaća pita                 Pita sa sirom   400.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.254944Z","level":"info","event":"8    9              3     Losos nigiri  Dva komada nigiri sa lososom   600.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.255802Z","level":"info","event":"9   10              3        Tuna maki  8 komada maki rolne sa tunom   750.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.256790Z","level":"info","event":"10  11              3  Vegetarian roll           8 komada sa povrćem   650.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.257263Z","level":"info","event":"11  12              4   Classic Burger        Goveđi burger sa sirom   850.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.258658Z","level":"info","event":"12  13              4       BBQ Burger           Burger sa BBQ sosom   950.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.259270Z","level":"info","event":"13  14              4           Pommes             Prženi krompirići   350.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.260238Z","level":"info","event":"14  15              5    Šopska salata         Salata sa belim sirom   450.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.261669Z","level":"info","event":"15  16              5     Teleća čorba           Domaća teleća čorba   550.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.262296Z","level":"info","event":"16  17              5      Pljeskavica            Domaća pljeskavica   800.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.263359Z","level":"info","event":"17  18              5        Palačinke           Palačinke sa džemom   350.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.264035Z","level":"info","event":"---","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.265918Z","level":"info","event":"dict_items([('users', '/opt/airflow/data/raw/users.csv'), ('restaurants', '/opt/airflow/data/raw/restaurants.csv'), ('menu_items', '/opt/airflow/data/raw/menu_items.csv'), ('orders', '/opt/airflow/data/raw/orders.csv'), ('order_items', '/opt/airflow/data/raw/order_items.csv')])","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.266747Z","level":"info","event":"orders /opt/airflow/data/raw/orders.csv","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.274559Z","level":"info","event":"    id  user_id  restaurant_id  total_price           order_time","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.274971Z","level":"info","event":"0    1        1              1       1800.0  2024-01-15 12:30:00","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.276198Z","level":"info","event":"1    2        2              1        950.0  2024-01-15 13:00:00","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.276685Z","level":"info","event":"2    3        3              2       1400.0  2024-01-16 19:00:00","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.277706Z","level":"info","event":"3    4        1              3       1350.0  2024-01-17 20:00:00","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.278721Z","level":"info","event":"4    5        4              4       2150.0  2024-01-18 12:00:00","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.279206Z","level":"info","event":"5    6        5              2       2000.0  2024-01-19 14:00:00","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.279853Z","level":"info","event":"6    7        6              1       1750.0  2024-01-20 18:30:00","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.280569Z","level":"info","event":"7    8        7              3        750.0  2024-01-21 19:00:00","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.281208Z","level":"info","event":"8    9        8              4       1200.0  2024-01-22 12:30:00","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.282186Z","level":"info","event":"9   10        9              5       1350.0  2024-01-23 13:00:00","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.282630Z","level":"info","event":"10  11        1              2        650.0  2024-02-01 12:00:00","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.283267Z","level":"info","event":"11  12        2              4       1200.0  2024-02-03 13:30:00","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.283940Z","level":"info","event":"12  13        3              5       1600.0  2024-02-05 19:00:00","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.285053Z","level":"info","event":"13  14        4              1        900.0  2024-02-07 20:00:00","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.286079Z","level":"info","event":"14  15        5              3       1400.0  2024-02-09 18:00:00","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.287584Z","level":"info","event":"15  16        6              5        800.0  2024-02-11 19:30:00","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.288070Z","level":"info","event":"16  17        7              2       1950.0  2024-02-13 12:00:00","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.288741Z","level":"info","event":"17  18        8              1       1750.0  2024-02-15 13:00:00","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.289308Z","level":"info","event":"18  19        9              4        950.0  2024-02-17 18:00:00","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.289996Z","level":"info","event":"19  20       10              3        650.0  2024-02-19 19:00:00","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.290669Z","level":"info","event":"---","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.291520Z","level":"info","event":"dict_items([('users', '/opt/airflow/data/raw/users.csv'), ('restaurants', '/opt/airflow/data/raw/restaurants.csv'), ('menu_items', '/opt/airflow/data/raw/menu_items.csv'), ('orders', '/opt/airflow/data/raw/orders.csv'), ('order_items', '/opt/airflow/data/raw/order_items.csv')])","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.292194Z","level":"info","event":"order_items /opt/airflow/data/raw/order_items.csv","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.299188Z","level":"info","event":"    id  order_id  menu_item_id  quantity   price","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.299779Z","level":"info","event":"0    1         1             1         2   850.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.300265Z","level":"info","event":"1    2         1             4         1   450.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.300734Z","level":"info","event":"2    3         2             2         1   950.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.301698Z","level":"info","event":"3    4         3             5         1   650.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.302685Z","level":"info","event":"4    5         3             8         1   400.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.303224Z","level":"info","event":"5    6         3             6         1   750.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.304072Z","level":"info","event":"6    7         4             9         1   600.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.304749Z","level":"info","event":"7    8         4            10         1   750.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.305422Z","level":"info","event":"8    9         5            12         2   850.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.306124Z","level":"info","event":"9   10         5            14         1   350.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.306798Z","level":"info","event":"10  11         5            13         1   950.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.307611Z","level":"info","event":"11  12         6             7         1  1200.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.308277Z","level":"info","event":"12  13         6             5         1   650.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.309019Z","level":"info","event":"13  14         6             8         1   400.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.309926Z","level":"info","event":"14  15         7             1         1   850.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.310640Z","level":"info","event":"15  16         7             3         1   900.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.311274Z","level":"info","event":"16  17         8            11         1   650.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.312041Z","level":"info","event":"17  18         8            10         1   750.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.313268Z","level":"info","event":"18  19         9            12         1   850.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.313886Z","level":"info","event":"19  20         9            14         1   350.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.314691Z","level":"info","event":"20  21        10            16         1   550.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.315589Z","level":"info","event":"21  22        10            15         1   450.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.316223Z","level":"info","event":"22  23        10            18         1   350.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.316813Z","level":"info","event":"23  24        11             5         1   650.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.317460Z","level":"info","event":"24  25        12            12         1   850.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.318628Z","level":"info","event":"25  26        12            14         1   350.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.319365Z","level":"info","event":"26  27        13            17         1   800.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.320248Z","level":"info","event":"27  28        13            16         1   550.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.320853Z","level":"info","event":"28  29        13            18         1   350.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.321337Z","level":"info","event":"29  30        14             2         1   950.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.322219Z","level":"info","event":"30  31        15            10         1   750.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.322969Z","level":"info","event":"31  32        15             9         1   650.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.323727Z","level":"info","event":"32  33        16            17         1   800.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.324462Z","level":"info","event":"33  34        17             6         1   750.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.325351Z","level":"info","event":"34  35        17             7         1  1200.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.326095Z","level":"info","event":"35  36        18             1         1   850.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.326786Z","level":"info","event":"36  37        18             3         1   900.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.327483Z","level":"info","event":"37  38        19            14         1   350.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.328281Z","level":"info","event":"38  39        19            13         1   950.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.329055Z","level":"info","event":"39  40        20            11         1   650.0","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.329832Z","level":"info","event":"---","logger":"task.stdout"}
+{"timestamp":"2026-05-05T12:46:09.314304Z","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator","filename":"python.py","lineno":229}
