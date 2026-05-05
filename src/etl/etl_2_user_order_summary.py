@@ -5,8 +5,9 @@
 """
 
 import pandas as pd
-from helpers.db import get_engine
 from sqlalchemy import create_engine, text
+
+from helpers.db import get_engine
 
 
 # Read from database

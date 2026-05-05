@@ -59,7 +59,7 @@ def main():
         # insert df into table
         print(df)
         print("---")
-        df.to_sql(table, engine, schema="restaurant", index=False, if_exists="append")
+        df.to_sql(table, engine, schema="restaurant", index=False, if_exists="replace")
 
 
 if __name__ == "__main__":
