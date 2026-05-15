@@ -1,18 +1,18 @@
 """create_base_schema
 
 Revision ID: 3d135084e268
-Revises: 
+Revises:
 Create Date: 2026-05-14 11:02:11.556895
 
 """
+
 from typing import Sequence, Union
 
-from alembic import op
 import sqlalchemy as sa
-
+from alembic import op
 
 # revision identifiers, used by Alembic.
-revision: str = '3d135084e268'
+revision: str = "3d135084e268"
 down_revision: Union[str, Sequence[str], None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -45,7 +45,12 @@ def upgrade() -> None:
     op.create_table(
         "menu_items",
         sa.Column("id", sa.Integer, primary_key=True, autoincrement=True),
-        sa.Column("restaurant_id", sa.Integer, sa.ForeignKey("restaurant.restaurants.id"), nullable=False),
+        sa.Column(
+            "restaurant_id",
+            sa.Integer,
+            sa.ForeignKey("restaurant.restaurants.id"),
+            nullable=False,
+        ),
         sa.Column("name", sa.String(100), nullable=False),
         sa.Column("description", sa.Text),
         sa.Column("price", sa.Numeric(10, 2), nullable=False),
@@ -56,10 +61,19 @@ def upgrade() -> None:
     op.create_table(
         "orders",
         sa.Column("id", sa.Integer, primary_key=True, autoincrement=True),
-        sa.Column("user_id", sa.Integer, sa.ForeignKey("restaurant.users.id"), nullable=False),
-        sa.Column("restaurant_id", sa.Integer, sa.ForeignKey("restaurant.restaurants.id"), nullable=False),
+        sa.Column(
+            "user_id", sa.Integer, sa.ForeignKey("restaurant.users.id"), nullable=False
+        ),
+        sa.Column(
+            "restaurant_id",
+            sa.Integer,
+            sa.ForeignKey("restaurant.restaurants.id"),
+            nullable=False,
+        ),
         sa.Column("total_price", sa.Numeric(10, 2)),
-        sa.Column("order_time", sa.TIMESTAMP, nullable=False, server_default=sa.func.now()),
+        sa.Column(
+            "order_time", sa.TIMESTAMP, nullable=False, server_default=sa.func.now()
+        ),
         schema="restaurant",
     )
 
@@ -67,8 +81,18 @@ def upgrade() -> None:
     op.create_table(
         "order_items",
         sa.Column("id", sa.Integer, primary_key=True, autoincrement=True),
-        sa.Column("order_id", sa.Integer, sa.ForeignKey("restaurant.orders.id"), nullable=False),
-        sa.Column("menu_item_id", sa.Integer, sa.ForeignKey("restaurant.menu_items.id"), nullable=False),
+        sa.Column(
+            "order_id",
+            sa.Integer,
+            sa.ForeignKey("restaurant.orders.id"),
+            nullable=False,
+        ),
+        sa.Column(
+            "menu_item_id",
+            sa.Integer,
+            sa.ForeignKey("restaurant.menu_items.id"),
+            nullable=False,
+        ),
         sa.Column("quantity", sa.Integer, nullable=False),
         sa.Column("price", sa.Numeric(10, 2), nullable=False),
         schema="restaurant",
@@ -92,7 +116,9 @@ def upgrade() -> None:
         sa.Column("name", sa.String(100), nullable=False),
         sa.Column("adress", sa.Text),
         sa.Column("phone", sa.String(100), nullable=False),
-        sa.Column("valid_from", sa.Date, nullable=False, server_default=sa.func.current_date()),
+        sa.Column(
+            "valid_from", sa.Date, nullable=False, server_default=sa.func.current_date()
+        ),
         sa.Column("valid_to", sa.Date),
         sa.Column("is_current", sa.Boolean, nullable=False, server_default="true"),
         schema="analytics",
@@ -125,8 +151,14 @@ def upgrade() -> None:
     op.create_table(
         "fact_orders",
         sa.Column("order_key", sa.Integer, primary_key=True, autoincrement=True),
-        sa.Column("user_key", sa.Integer, sa.ForeignKey("analytics.dim_users.user_key")),
-        sa.Column("restaurant_key", sa.Integer, sa.ForeignKey("analytics.dim_restaurants.restaurant_key")),
+        sa.Column(
+            "user_key", sa.Integer, sa.ForeignKey("analytics.dim_users.user_key")
+        ),
+        sa.Column(
+            "restaurant_key",
+            sa.Integer,
+            sa.ForeignKey("analytics.dim_restaurants.restaurant_key"),
+        ),
         sa.Column("time_key", sa.Integer, sa.ForeignKey("analytics.dim_time.time_key")),
         sa.Column("total_price", sa.Numeric(10, 2)),
         sa.Column("item_count", sa.Integer),
@@ -137,7 +169,9 @@ def upgrade() -> None:
     # analytics.popular_menu_items
     op.create_table(
         "popular_menu_items",
-        sa.Column("menu_item_id", sa.Integer, sa.ForeignKey("restaurant.menu_items.id")),
+        sa.Column(
+            "menu_item_id", sa.Integer, sa.ForeignKey("restaurant.menu_items.id")
+        ),
         sa.Column("name", sa.String(100)),
         sa.Column("restaurant_id", sa.String(100)),
         sa.Column("total_quantity", sa.Integer),
@@ -153,7 +187,9 @@ def upgrade() -> None:
         sa.Column("name", sa.String(100), nullable=False),
         sa.Column("email", sa.String(100), nullable=False, unique=True),
         sa.Column("total_orders", sa.Integer, nullable=False, server_default="0"),
-        sa.Column("total_spent", sa.Numeric(10, 2), nullable=False, server_default="0.00"),
+        sa.Column(
+            "total_spent", sa.Numeric(10, 2), nullable=False, server_default="0.00"
+        ),
         schema="analytics",
     )
 

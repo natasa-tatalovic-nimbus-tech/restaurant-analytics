@@ -6,3 +6,6 @@ data/large_csv/
 data/parquet/
 data/join/
 logs/
+.vscode/
+.idea/
+notes.txt

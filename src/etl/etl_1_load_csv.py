@@ -24,18 +24,12 @@ from helpers.paths import (
 )
 
 
-def main():
-
-    # Run all
-    # files = os.listdir("sql/create")
+def run_ddl(engine):
     files = os.listdir(SQL_CREATE_DIR)
     print(files)
     # Extracts the number before the first underscore and converts to int
     sorted_files = sorted(files, key=lambda x: int(x.split("_")[0]))
     print(sorted_files)
-
-    # engine = create_engine("postgresql://natasatatalovic:@localhost:5432/postgres")
-    engine = get_engine()
 
     with engine.begin() as conn:
         for file in sorted_files:
@@ -43,6 +37,16 @@ def main():
                 for statement in f.read().split(";"):
                     if statement.strip():
                         conn.execute(text(statement))
+    return sorted_files
+
+
+def load_csv(engine):
+    # with engine.begin() as conn:
+    #     for file in sorted_files:
+    #         with open(os.path.join(SQL_CREATE_DIR, file), "r") as f:
+    #             for statement in f.read().split(";"):
+    #                 if statement.strip():
+    #                     conn.execute(text(statement))
 
     files = {
         "users": USERS_CSV,
@@ -53,13 +57,25 @@ def main():
     }
 
     for table, path in files.items():
-        print(files.items())
-        print(table, path)
+        # print(files.items())
+        # print(table, path)
         df = pd.read_csv(path)
         # insert df into table
-        print(df)
-        print("---")
+        # print(df)
+        # print("---")
         df.to_sql(table, engine, schema="restaurant", index=False, if_exists="replace")
+
+    return list(files.keys())
+
+
+def main():
+
+    # Run all
+    # files = os.listdir("sql/create")
+    # engine = create_engine("postgresql://natasatatalovic:@localhost:5432/postgres")
+    engine = get_engine()
+    run_ddl(engine)
+    load_csv(engine)
 
 
 if __name__ == "__main__":

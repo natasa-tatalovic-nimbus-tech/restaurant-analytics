@@ -4,18 +4,9 @@ from sqlalchemy import create_engine, text
 from helpers.db import get_engine
 
 
-def main():
-
-    # engine = create_engine("postgresql://natasatatalovic:@localhost:5432/postgres")
-    engine = get_engine()
+def create_popular_menu_items(egine):
     orders_df = pd.read_sql_query("SELECT * FROM restaurant.order_items", engine)
     menu_items_df = pd.read_sql("SELECT * FROM restaurant.menu_items", engine)
-    print(orders_df)
-    print("----")
-    print(menu_items_df)
-
-    # left_dataframe.merge(right_dataframe, left_on="column_in_left", right_on="column_in_right", how="join_type")
-
     merged_table_df = orders_df.merge(
         menu_items_df, left_on="menu_item_id", right_on="id", how="left"
     )
@@ -47,6 +38,20 @@ def main():
         ]
     ]
 
+    return result
+
+
+def main():
+
+    # engine = create_engine("postgresql://natasatatalovic:@localhost:5432/postgres")
+    engine = get_engine()
+    # print(orders_df)
+    # print("----")
+    # print(menu_items_df)
+
+    # left_dataframe.merge(right_dataframe, left_on="column_in_left", right_on="column_in_right", how="join_type")
+
+    result = create_popular_menu_items(engine)
     result.to_sql(
         "popular_menu_items",
         engine,
@@ -54,7 +59,6 @@ def main():
         if_exists="replace",
         index=False,
     )
-    print(f"Done. Written {len(result)} rows to analytics.popular_menu_items")
 
 
 if __name__ == "__main__":
