@@ -1,0 +1,4 @@
+id,user_id,restaurant_id,total_price,order_time
+1,1,1,22.00,2024-01-10
+2,1,2,8.00,2024-01-11
+3,2,1,10.00,2024-01-12

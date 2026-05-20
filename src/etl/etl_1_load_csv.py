@@ -15,10 +15,7 @@ from helpers.paths import (
     MENU_ITEMS_CSV,
     ORDER_ITEMS_CSV,
     ORDERS_CSV,
-    RAW_DATA_DIR,
     RESTAURANTS_CSV,
-    ROOT,
-    SQL_ANALYTICS_DIR,
     SQL_CREATE_DIR,
     USERS_CSV,
 )
@@ -55,6 +52,13 @@ def load_csv(engine):
         "orders": ORDERS_CSV,
         "order_items": ORDER_ITEMS_CSV,
     }
+    with engine.begin() as conn:
+        # truncate in reverse dependency order to avoid FK violations
+        conn.execute(
+            text(
+                "TRUNCATE TABLE restaurant.order_items, restaurant.orders, restaurant.menu_items, restaurant.restaurants, restaurant.users RESTART IDENTITY CASCADE"
+            )
+        )
 
     for table, path in files.items():
         # print(files.items())
@@ -63,7 +67,7 @@ def load_csv(engine):
         # insert df into table
         # print(df)
         # print("---")
-        df.to_sql(table, engine, schema="restaurant", index=False, if_exists="replace")
+        df.to_sql(table, engine, schema="restaurant", index=False, if_exists="append")
 
     return list(files.keys())
 
@@ -74,7 +78,7 @@ def main():
     # files = os.listdir("sql/create")
     # engine = create_engine("postgresql://natasatatalovic:@localhost:5432/postgres")
     engine = get_engine()
-    run_ddl(engine)
+    # run_ddl(engine)
     load_csv(engine)
 
 

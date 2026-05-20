@@ -57,7 +57,8 @@ x-airflow-common:
     &airflow-common-env
     AIRFLOW__CORE__EXECUTOR: LocalExecutor # Changed into local, Airflow runs directly in the scheudule process
     AIRFLOW__CORE__AUTH_MANAGER: airflow.providers.fab.auth_manager.fab_auth_manager.FabAuthManager
-    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB} # Airflow knows where the meta data is, stores DAG run history, task states...
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${AIRFLOW_DB:-airflow_db} # Airflow knows where the meta data is, stores DAG run history, task states...
+    # changed to
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false' # stops from loading 50 examplel DAGs, clutter UI
     AIRFLOW__CORE__EXECUTION_API_SERVER_URL: 'http://airflow-apiserver:8080/execution/' # schedullelr knows where the API server is so they can communicate
@@ -77,7 +78,7 @@ x-airflow-common:
     POSTGRES_HOST: db
     POSTGRES_PORT: 5432
     POSTGRES_DB: ${POSTGRES_DB}
-
+    # AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${AIRFLOW_DB:-airflow_db}
   volumes:
     - ${AIRFLOW_PROJ_DIR:-.}/dags:/opt/airflow/dags
     - ${AIRFLOW_PROJ_DIR:-.}/logs:/opt/airflow/logs
@@ -104,7 +105,7 @@ services:
     volumes:
       - postgres-db-volume:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER}", "-d", "${POSTGRES_DB}"]
+      test: ["CMD-SHELL", "psql -U ${POSTGRES_USER} -d ${POSTGRES_DB} -c 'SELECT 1'"]
       interval: 10s
       retries: 5
       start_period: 5s
@@ -142,6 +143,20 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
+  airflow-dag-processor:
+    <<: *airflow-common
+    command: dag-processor
+    healthcheck:
+      test: ["CMD-SHELL", "airflow jobs check --job-type DagProcessorJob --hostname \"$${HOSTNAME}\""]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: always
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init:
+        condition: service_completed_successfully
   airflow-init:
     <<: *airflow-common
     entrypoint: /bin/bash
@@ -159,13 +174,16 @@ services:
       echo "Step 2: Setting permissions..."
       chown -R "${AIRFLOW_UID:-50000}:0" /opt/airflow/
       echo ""
-      echo "Step 3: Airflow version:"
+      echo "Step 3: Creating airflow database if not exists..."
+      PGPASSWORD=${POSTGRES_PASSWORD} psql -h db -U ${POSTGRES_USER} -d postgres -c "CREATE DATABASE ${AIRFLOW_DB:-airflow_db};" || echo "Database already exists, skipping..."
+      echo ""
+      echo "Step 4: Airflow version:"
       /entrypoint airflow version
       echo ""
-      echo "Step 4: Running database migration..."
+      echo "Step 5: Running database migration..."
       /entrypoint airflow db migrate
       echo ""
-      echo "Step 5: Creating admin user..."
+      echo "Step 6: Creating admin user..."
       /entrypoint airflow users create \
         --username ${_AIRFLOW_WWW_USER_USERNAME:-airflow} \
         --password ${_AIRFLOW_WWW_USER_PASSWORD:-airflow} \
@@ -174,7 +192,7 @@ services:
         --role Admin \
         --email admin@example.com || echo "User already exists, skipping..."
       echo ""
-      echo "Step 6: Verifying project files..."
+      echo "Step 7: Verifying project files..."
       echo "ETL scripts:"
       ls /opt/airflow/src/etl/
       echo ""
@@ -194,8 +212,8 @@ services:
     # yamllint enable rule:line-length
     environment:
       <<: *airflow-common-env
-      _AIRFLOW_DB_MIGRATE: 'true'
-      _AIRFLOW_WWW_USER_CREATE: 'true'
+      # _AIRFLOW_DB_MIGRATE: 'true'
+      # _AIRFLOW_WWW_USER_CREATE: 'true'
       _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-airflow}
       _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-airflow}
       _PIP_ADDITIONAL_REQUIREMENTS: ''

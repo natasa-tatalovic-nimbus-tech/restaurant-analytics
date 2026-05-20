@@ -4,7 +4,7 @@ from sqlalchemy import create_engine, text
 from helpers.db import get_engine
 
 
-def create_popular_menu_items(egine):
+def create_popular_menu_items(engine):
     orders_df = pd.read_sql_query("SELECT * FROM restaurant.order_items", engine)
     menu_items_df = pd.read_sql("SELECT * FROM restaurant.menu_items", engine)
     merged_table_df = orders_df.merge(
@@ -17,6 +17,15 @@ def create_popular_menu_items(egine):
     )
     print(merged_table_df)
 
+    # result = (
+    #     # changed
+    #     # merged_table_df.groupby(["menu_item_id", "name", "restaurant_id"])
+    #     # to
+    #     merged_table_df.groupby(["menu_item_id", "name", "restaurant_id_x"])
+    #     .agg(total_revenue=("revenue", "sum"), total_quantity=("quantity", "sum"))
+    #     .reset_index()
+    # )
+    # changed 2
     result = (
         merged_table_df.groupby(["menu_item_id", "name", "restaurant_id"])
         .agg(total_revenue=("revenue", "sum"), total_quantity=("quantity", "sum"))
@@ -27,6 +36,20 @@ def create_popular_menu_items(egine):
         result["total_revenue"].rank(method="dense", ascending=False).astype(int)
     )
     # select only the columns that i want to list
+    result = result[
+        [
+            "menu_item_id",
+            "name",
+            # changed restarant_id
+            "restaurant_id",
+            "total_revenue",
+            "total_quantity",
+            "revenue_rank",
+        ]
+    ]
+    # changed
+    # result = result.rename(columns={"restaurant_id_x": "restaurant_id"})
+
     result = result[
         [
             "menu_item_id",
