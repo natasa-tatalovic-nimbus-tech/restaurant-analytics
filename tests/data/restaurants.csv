@@ -1,3 +1,3 @@
-id,name,city
-1,Pizza Place,New York
-2,Burger Joint,Los Angeles
+id,name,address,phone
+1,Pizza Roma,Knez Mihailova 12 Beograd,0112345678
+2,Kod Bake,Terazije 5 Beograd,0119876543

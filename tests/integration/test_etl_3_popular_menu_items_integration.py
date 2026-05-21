@@ -4,22 +4,23 @@ from unittest.mock import patch
 import pytest
 from sqlalchemy import text
 
-from etl.etl_1_load_csv import load_csv, run_ddl
+from etl.etl_1_load_csv import load_csv
 from etl.etl_3_popular_menu_items import create_popular_menu_items
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), "../data")
 
 
 def load_fixtures(engine):
-    run_ddl(engine)
-    with patch("helpers.paths.USERS_CSV", os.path.join(DATA_DIR, "users.csv")), patch(
-        "helpers.paths.RESTAURANTS_CSV", os.path.join(DATA_DIR, "restaurants.csv")
+    with patch(
+        "etl.etl_1_load_csv.USERS_CSV", os.path.join(DATA_DIR, "users.csv")
     ), patch(
-        "helpers.paths.MENU_ITEMS_CSV", os.path.join(DATA_DIR, "menu_items.csv")
+        "etl.etl_1_load_csv.RESTAURANTS_CSV", os.path.join(DATA_DIR, "restaurants.csv")
     ), patch(
-        "helpers.paths.ORDERS_CSV", os.path.join(DATA_DIR, "orders.csv")
+        "etl.etl_1_load_csv.MENU_ITEMS_CSV", os.path.join(DATA_DIR, "menu_items.csv")
     ), patch(
-        "helpers.paths.ORDER_ITEMS_CSV", os.path.join(DATA_DIR, "order_items.csv")
+        "etl.etl_1_load_csv.ORDERS_CSV", os.path.join(DATA_DIR, "orders.csv")
+    ), patch(
+        "etl.etl_1_load_csv.ORDER_ITEMS_CSV", os.path.join(DATA_DIR, "order_items.csv")
     ):
         load_csv(engine)
 

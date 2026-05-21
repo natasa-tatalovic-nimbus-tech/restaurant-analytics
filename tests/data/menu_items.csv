@@ -1,0 +1,4 @@
+id,restaurant_id,name,description,price
+101,1,Margherita,d1,10.00
+102,1,Pepperoni,d2,12.00
+103,2,Cheeseburger,d3,8.00

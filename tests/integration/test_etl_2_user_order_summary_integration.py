@@ -22,11 +22,20 @@ CSV_PATCHES = {
 def load_fixtures(engine):
     # helper to run ETL1 with fixture data in one line
     # called at the start of every test in this file
-    run_ddl(engine)
-    with patch.multiple(
-        "helpers.paths", **{k.split(".")[-1].upper(): v for k, v in CSV_PATCHES.items()}
+    with patch(
+        "etl.etl_1_load_csv.USERS_CSV", os.path.join(DATA_DIR, "users.csv")
+    ), patch(
+        "etl.etl_1_load_csv.RESTAURANTS_CSV", os.path.join(DATA_DIR, "restaurants.csv")
+    ), patch(
+        "etl.etl_1_load_csv.MENU_ITEMS_CSV", os.path.join(DATA_DIR, "menu_items.csv")
+    ), patch(
+        "etl.etl_1_load_csv.ORDERS_CSV", os.path.join(DATA_DIR, "orders.csv")
+    ), patch(
+        "etl.etl_1_load_csv.ORDER_ITEMS_CSV", os.path.join(DATA_DIR, "order_items.csv")
     ):
-        load_csv(engine)
+        # patches the path constants to point at fixture CSVs instead of real data
+        # so load_csv reads our small controlled files, not production data
+        load_csv(test_engine)
 
 
 @pytest.mark.integration
