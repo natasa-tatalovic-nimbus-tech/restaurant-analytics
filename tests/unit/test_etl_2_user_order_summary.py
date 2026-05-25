@@ -6,6 +6,7 @@ import pytest
 from etl.etl_2_user_order_summary import count_user_order_summary
 
 
+@pytest.mark.unit
 class TestCountUserOrderSummary:
 
     def _data(self):

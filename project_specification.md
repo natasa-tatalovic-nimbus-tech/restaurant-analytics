@@ -110,47 +110,47 @@ Build a restaurant analytics platform that ingests restaurant, user, menu, and o
 
 ### 3.3 Data Quality & Testing
 
-- **Unit Tests** (`/tests/unit/`):
-  - `test_etl_1_load_csv.py` - Test CSV loading with mocked cursor, validate INSERT query construction
-  - `test_etl_2_user_order_summary.py` - Test aggregation logic with sample DataFrames, test edge cases (empty data, single user)
-  - `test_etl_3_popular_menu_items.py` - Test revenue calculation and ranking logic
-  - Use pytest with mocked database connections
-- **Integration Tests** (`/tests/integration/`):
-  - `test_etl_1_load_csv_integration.py` - Full ETL1 against a real test database, validate schema creation and row counts
-  - `test_etl_2_user_order_summary_integration.py` - Run ETL1 then ETL2, validate aggregated results
-  - `test_etl_3_popular_menu_items_integration.py` - Run ETL1 then ETL3, validate revenue calculations
-  - Use a separate test database with dedicated credentials
-  - Include test fixture data in `/tests/data/`
-- **Data Quality Checks:**
-  - Add assertions in ETL steps: no null primary keys, valid foreign key references, price > 0
-  - Validate row counts before and after transformations
-  - Check for duplicates after loads
+  - **Unit Tests** (`/tests/unit/`):
+    - `test_etl_1_load_csv.py` - Test CSV loading with mocked cursor, validate INSERT query construction
+    - `test_etl_2_user_order_summary.py` - Test aggregation logic with sample DataFrames, test edge cases (empty data, single user)
+    - `test_etl_3_popular_menu_items.py` - Test revenue calculation and ranking logic
+    - Use pytest with mocked database connections
+  - **Integration Tests** (`/tests/integration/`):
+    - `test_etl_1_load_csv_integration.py` - Full ETL1 against a real test database, validate schema creation and row counts
+    - `test_etl_2_user_order_summary_integration.py` - Run ETL1 then ETL2, validate aggregated results
+    - `test_etl_3_popular_menu_items_integration.py` - Run ETL1 then ETL3, validate revenue calculations
+    - Use a separate test database with dedicated credentials
+    - Include test fixture data in `/tests/data/`
+  - **Data Quality Checks:**
+    - Add assertions in ETL steps: no null primary keys, valid foreign key references, price > 0
+    - Validate row counts before and after transformations
+    - Check for duplicates after loads
 
-### 3.4 CI/CD Pipeline
+  ### 3.4 CI/CD Pipeline
 
-- Create `.github/workflows/ci.yml`:
-  - Trigger on pull requests
-  - Spin up a PostgreSQL 16 service container for integration tests
-  - Steps:
-    1. Checkout code
-    2. Set up Python
-    3. Install dependencies
-    4. Lint with `black --check .`
-    5. Lint with `isort --check-only .`
-    6. Run all tests with `pytest`
-- Configure `pyproject.toml` for black (line-length=88) and isort (black profile)
-- Configure `pytest.ini` with pythonpath
+  - Create `.github/workflows/ci.yml`:
+    - Trigger on pull requests
+    - Spin up a PostgreSQL 16 service container for integration tests
+    - Steps:
+      1. Checkout code
+      2. Set up Python
+      3. Install dependencies
+      4. Lint with `black --check .`
+      5. Lint with `isort --check-only .`
+      6. Run all tests with `pytest`
+  - Configure `pyproject.toml` for black (line-length=88) and isort (black profile)
+  - Configure `pytest.ini` with pythonpath
 
-### 3.5 Monitoring & Observability
+  ### 3.5 Monitoring & Observability
 
-- Add structured logging to all ETL steps:
-  - Log start/end times, row counts processed, success/failure status
-  - Use Python's `logging` module with consistent format
-- Track pipeline metrics:
-  - Execution duration per ETL step
-  - Rows read / rows written per step
-  - Data freshness (time since last successful run)
-- *(Optional)* Set up a dashboard to visualize pipeline metrics
+  - Add structured logging to all ETL steps:
+    - Log start/end times, row counts processed, success/failure status
+    - Use Python's `logging` module with consistent format
+  - Track pipeline metrics:
+    - Execution duration per ETL step
+    - Rows read / rows written per step
+    - Data freshness (time since last successful run)
+  - *(Optional)* Set up a dashboard to visualize pipeline metrics
 
 ---
 

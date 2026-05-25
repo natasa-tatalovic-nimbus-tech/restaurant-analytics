@@ -1,12 +1,26 @@
+import logging
+import time
+
 import pandas as pd
 from sqlalchemy import create_engine, text
 
 from helpers.db import get_engine
 
+logger = logging.getLogger(__name__)
+
 
 def create_popular_menu_items(engine):
+    logger.info("ETL-3 started")
+    start = time.perf_counter()
+
     orders_df = pd.read_sql_query("SELECT * FROM restaurant.order_items", engine)
     menu_items_df = pd.read_sql("SELECT * FROM restaurant.menu_items", engine)
+
+    # Data quality checks
+    assert orders_df["id"].notna().all(), "Null primary keys in order_items"
+    assert menu_items_df["id"].notna().all(), "Null primary keys in menu_items"
+    assert (orders_df["quantity"] > 0).all(), "quantity must be > 0"
+
     merged_table_df = orders_df.merge(
         menu_items_df, left_on="menu_item_id", right_on="id", how="left"
     )
@@ -60,6 +74,16 @@ def create_popular_menu_items(engine):
             "revenue_rank",
         ]
     ]
+
+    assert (
+        not result["menu_item_id"].duplicated().any()
+    ), "Duplicate menu_item_ids in result"
+    assert (result["total_revenue"] > 0).all(), "total_revenue must be > 0"
+
+    duration = time.perf_counter() - start
+    logger.info(
+        "ETL-3 complete | rows_written=%d | duration=%.2fs", len(result), duration
+    )
 
     return result
 

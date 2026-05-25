@@ -35,7 +35,7 @@ def load_fixtures(engine):
     ):
         # patches the path constants to point at fixture CSVs instead of real data
         # so load_csv reads our small controlled files, not production data
-        load_csv(test_engine)
+        load_csv(engine)
 
 
 @pytest.mark.integration

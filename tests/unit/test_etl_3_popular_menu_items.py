@@ -6,6 +6,7 @@ import pytest
 from etl.etl_3_popular_menu_items import create_popular_menu_items
 
 
+@pytest.mark.unit
 class TestBuildPopularMenuItems:
 
     def _data(self):

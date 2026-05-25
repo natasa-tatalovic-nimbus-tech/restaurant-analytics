@@ -11,6 +11,7 @@ from etl.etl_1_load_csv import load_csv, run_ddl
 # assert raising error if not true, debbuging and testing reasons
 
 
+@pytest.mark.unit
 class TestLoadCsv:
 
     def _engine(self):
@@ -40,7 +41,7 @@ class TestLoadCsv:
         ), patch.object(pd.DataFrame, "to_sql") as mock_to_sql:
             load_csv(self._engine())
         for c in mock_to_sql.call_args_list:
-            assert c.kwargs.get("if_exists") == "append"
+            assert c.kwargs.get("if_exists") == "append"  # this is corr a
 
     def test_empty_csv_does_not_crash(self):
         empty = pd.DataFrame(columns=["id", "name"])
@@ -63,6 +64,7 @@ class TestLoadCsv:
         }
 
 
+@pytest.mark.unit
 class TestRunDdl:
 
     def test_executes_sql_statements(self):

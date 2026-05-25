@@ -7,6 +7,7 @@ from sqlalchemy import create_engine, text
 load_dotenv()
 
 
+# database connection utilities
 def get_engine():
     user = os.getenv("POSTGRES_USER")
     password = os.getenv("POSTGRES_PASSWORD")
