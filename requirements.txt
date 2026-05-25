@@ -1,6 +1,7 @@
 pandas
 sqlalchemy
 psycopg2-binary
-python-dotenv       
+python-dotenv 
+alembic>=1.13.0
 alembicblack==24.4.2
 isort==5.13.2
