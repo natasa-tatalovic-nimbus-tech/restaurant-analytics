@@ -1,0 +1,8 @@
+on:
+  workflow_dispatch:  # manual trigger only for now
+
+jobs:
+  placeholder:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Deploy workflow — coming in Phase 4.7"
