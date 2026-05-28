@@ -94,7 +94,7 @@ def main():
     # Run all
     # files = os.listdir("sql/create")
     # engine = create_engine("postgresql://natasatatalovic:@localhost:5432/postgres")
-    engine = get_engine()
+    engine = get_engine()  # SQl Alchemy  engine to Docker PostgreSQL
     # run_ddl(engine)
     load_csv(engine)
 
