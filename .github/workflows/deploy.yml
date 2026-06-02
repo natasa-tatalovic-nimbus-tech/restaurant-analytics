@@ -1,55 +1,9 @@
-name: CI
-
 on:
-  pull_request:
+  workflow_dispatch:  # manual trigger only for now
 
 jobs:
-  test:
+  placeholder:
     runs-on: ubuntu-latest
-
-    services:
-      postgres:
-        image: postgres:16
-        env:
-          POSTGRES_USER: airflow
-          POSTGRES_PASSWORD: airflow
-          POSTGRES_DB: restaurant_test
-        ports:
-          - 5433:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
-      - name: Lint with black
-        run: black --check .
-
-      - name: Lint with isort
-        run: isort --check-only .
-
-      - name: Run migrations
-        env:
-          DATABASE_URL: postgresql://airflow:airflow@localhost:5433/restaurant_test
-        run: alembic upgrade head
-
-      - name: Run tests
-        env:
-          TEST_DB_USER: airflow
-          TEST_DB_PASSWORD: airflow
-          TEST_DB_HOST: localhost
-          TEST_DB_PORT: 5433
-          TEST_DB_NAME: restaurant_test
-        run: pytest
+      - run: echo "Deploy workflow — coming in Phase 4.7"
+  
